@@ -1,50 +1,48 @@
-class Students {
-    String RegNo;
-    String Name;
-    int JavaMark;
-    int MultimediaMark;
-
-    //  void method (displays total)
-    void calculateTotal() {
-        int total = JavaMark + MultimediaMark;
-        System.out.println("Void Total: " + total);
-    }
-
-    //  return total marks method
-    int returnCalculateTotal() {
-        return JavaMark + MultimediaMark;
-    }
-
-    //  method with parameters returning total
-    int calculateTotal(int javaMark, int multimediaMark) {
-        return javaMark + multimediaMark;
-    }
-}
-
 public class Student {
-    public static void main(String[] args) {
-        Students students1 = new Students();
+    private String firstName;
+    private String lastName;
+    private double semesterFee;
 
-        // Assign values
-        students1.RegNo = "2025-B071-20977";
-        students1.Name = "KALYESUBULAWILFREDKEVIN";
-        students1.JavaMark = 500;
-        students1.MultimediaMark = 200;
+    // Constructor
+    public Student(String firstName, String lastName, double semesterFee) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        setSemesterFee(semesterFee); // use setter to enforce validation
+    }
 
-        // Display assigned values
-        System.out.println("Reg No: " + students1.RegNo);
-        System.out.println("Name: " + students1.Name);
-        System.out.println("Java Mark: " + students1.JavaMark);
-        System.out.println("Multimedia Mark: " + students1.MultimediaMark);
+    // Setters
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-        // Call void method
-        students1.calculateTotal();
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-        // Call return method
-        System.out.println("Return Total: " + students1.returnCalculateTotal());
+    public void setSemesterFee(double semesterFee) {
+        this.semesterFee = (semesterFee > 0) ? semesterFee : 0.0;
+    }
 
-        // Call parameterized method
-        int total = students1.calculateTotal(students1.JavaMark, students1.MultimediaMark);
-        System.out.println("Parameter Total : " + total);
+    // Getters
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public double getSemesterFee() {
+        return semesterFee;
+    }
+
+    // Returns yearly fee (semesterFee * 2)
+    public double getYearlyFee() {
+        return semesterFee * 2;
+    }
+
+    // Applies a 10% raise to the semester fee
+    public void applyRaise(double percentage) {
+        semesterFee += semesterFee * (percentage / 100);
     }
 }
